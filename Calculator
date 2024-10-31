@@ -1,13 +1,16 @@
 public class Calculator {
-    public static int addition(int a,int b){
-        while (b != 0){
-            int carry = a & b;
-            a = a ^ b;
-            b = carry << 1;
+    public static double arctan(double x) {
+        double total = 0.0;
+        int neg = 1;
+        for (int i = 1; i <= 31; i += 2) {
+            total += (Math.pow(x, i) * neg) / i;
+            neg *= -1;  // Alternate signs
         }
-        return a;
+
+        return total;
     }
-    public static int subtraction(int a, int b){
-        return addition(a,-b);
+
+    public static void main(String[] args) {
+        System.out.println(arctan(0.5));
     }
 }
