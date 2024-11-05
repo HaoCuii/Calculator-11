@@ -8,7 +8,12 @@ public class Calculator {
         return total;
         // add decimal exponentation later
     }
-    
+
+    public static double mod(double a, double b){
+        int floorDivision = (int)(a / b);
+        return a - b * floorDivision;
+    }
+
     public static int factorial(int n){
         if (n == 0 || n == 1) {
             return 1;
