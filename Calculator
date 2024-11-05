@@ -84,10 +84,13 @@ public class Calculator {
     }
 
     public static double pi() {
-        
         double pi = 16*arctan((double) 1/5) - 4 * arctan((double) 1/239);
         return pi;
         
+    }
+
+    public static double arccos(double x){
+        return  pi()/2 - arcsin(x);
     }
 
     public static void main(String[] args) {
