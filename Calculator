@@ -1,4 +1,13 @@
 public class Calculator {
+
+    public static double power(double x, int exp){
+        double total = 1;
+        for (int i = 1; i <= exp; i++){
+            total *= x;
+        }
+        return total;
+        // add decimal exponentation later
+    }
     
     public static int factorial(int n){
         if (n == 0 || n == 1) {
