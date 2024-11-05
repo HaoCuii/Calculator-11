@@ -78,6 +78,13 @@ public class Calculator {
         return total;
     }
 
+    public static double pi() {
+        
+        double pi = 16*arctan((double) 1/5) - 4 * arctan((double) 1/239);
+        return pi;
+        
+    }
+
     public static void main(String[] args) {
         System.out.println(arctan(0.5));
     }
