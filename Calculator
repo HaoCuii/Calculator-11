@@ -1,4 +1,20 @@
 public class Calculator {
+    
+    public static int factorial(int n){
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        return n * (factorial(n - 1));
+    }
+
+    public static double arcsin(double x) {
+        double total = x;
+        for (int i = 3; i <= 31; i += 2) {
+            total += Math.pow(x, i) *  factorial(i-1) / (i * Math.pow(4,(i-1)/2) * Math.pow(factorial((i-1)/2),2));
+        }
+        return total;
+    }
+
     public static double arctan(double x) {
         double total = 0.0;
         int neg = 1;
