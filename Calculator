@@ -35,8 +35,8 @@ public class Calculator {
         double denominator;
 
         for (int n = 0; n < iterations; n++) {
-            denominator = Factorial.factorial(2 * n + add_sin);
-            double sum = Powers.power(x, (2 * n + add_sin)) / denominator;
+            denominator = factorial(2 * n + add_sin);
+            double sum = power(x, (2 * n + add_sin)) / denominator;
 
             if (n % 2 == 0) {
                 total += sum;
