@@ -6,7 +6,6 @@ public class Calculator {
             total *= x;
         }
         return total;
-        // add decimal exponentation later
     }
 
     public static double mod(double a, double b){
@@ -43,40 +42,10 @@ public class Calculator {
     }
 
     public static double log(double base, double argument){
+        /log base a of b = ln(a)/ln(b)
         return ln(base) / ln(argument);
     }
 
-    public static double cos(double x) {
-        return maclaurin(x, 100, false);
-    }
-
-    public static double sin(double x) {
-        return maclaurin(x, 100, true);
-    }
-
-    public static double tan(double x){
-        return sin(x) / cos(x);
-    }
-
-    private static double maclaurin(double x, int iterations, boolean sin) {
-        x = x % (2 * Math.PI);
-        double total = 0;
-        int add_sin = sin ? 1 : 0;
-        double denominator;
-
-        for (int n = 0; n < iterations; n++) {
-            denominator = factorial(2 * n + add_sin);
-            double sum = power(x, (2 * n + add_sin)) / denominator;
-
-            if (n % 2 == 0) {
-                total += sum;
-            } else {
-                total -= sum;
-            }
-        }
-
-        return total;
-    }
 
     public static double arcsin(double x) {
         double total = x;
@@ -106,6 +75,41 @@ public class Calculator {
     public static double arccos(double x){
         return  pi()/2 - arcsin(x);
     }
+
+    public static double cos(double x) {
+        return taylorExpansion(x, 100, false);
+    }
+
+    public static double sin(double x) {
+        return taylorExpansion(x, 100, true);
+    }
+
+    public static double tan(double x){
+        // tan = sin/cos
+        return sin(x) / cos(x);
+    }
+
+    private static double taylorExpansion(double x, int iterations, boolean sin) {
+        // uses taylor expansion to calculate sin and cos
+        x = x % (2 * pi());
+        double total = 0;
+        int add_sin = sin ? 1 : 0;
+        double denominator;
+
+        for (int n = 0; n < iterations; n++) {
+            denominator = factorial(2 * n + add_sin);
+            double sum = power(x, (2 * n + add_sin)) / denominator;
+
+            if (n % 2 == 0) {
+                total += sum;
+            } else {
+                total -= sum;
+            }
+        }
+
+        return total;
+    }
+
 
     public static void main(String[] args) {
         System.out.println(arctan(0.5));
