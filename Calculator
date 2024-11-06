@@ -32,6 +32,20 @@ public class Calculator {
         return total;
     }
 
+    public static double ln(double x){
+        // taylor series expansion of ln(x)
+        double total = 0;
+        for (int n = 0; n <= 1000; n++){
+            total += Powers.power(((x - 1) / (x + 1)), 2 * n + 1) / (2 * n + 1);
+        }
+
+        return 2 * total;
+    }
+
+    public static double log(double base, double argument){
+        return ln(base) / ln(argument);
+    }
+
     public static double cos(double x) {
         return maclaurin(x, 100, false);
     }
