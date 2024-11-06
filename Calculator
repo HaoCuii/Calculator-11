@@ -13,7 +13,7 @@ public class Calculator {
         return a - b * floorDivision;
     }
 
-    public static int factorial(int n){
+    public static double factorial(int n){
         if (n == 0 || n == 1) {
             return 1;
         }
