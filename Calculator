@@ -42,7 +42,7 @@ public class Calculator {
     }
 
     public static double log(double base, double argument){
-        /log base a of b = ln(a)/ln(b)
+        //log base a of b = ln(a)/ln(b)
         return ln(base) / ln(argument);
     }
 
