@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+//helper class
 class Pair {
     double first;
     double second;
@@ -11,7 +12,7 @@ class Pair {
 }
 
 public class Calculator {
-    
+
     public static double power(double x, int exp){
         double total = 1;
         for (int i = 1; i <= exp; i++){
@@ -27,6 +28,7 @@ public class Calculator {
         return x;
     }
 
+    //modulo with floor divison rounding towards negative infinity
     public static double mod(double a, double b) {
         int add_negative = 0;
         if (a < 0) {
@@ -38,6 +40,7 @@ public class Calculator {
     }
 
     public static double factorial(int n){
+        //factorial function, only works for whole numbers
         if (n < 0){
             throw new IllegalArgumentException("Factorial of a number must be positive (for this calculator");
         }
@@ -49,6 +52,7 @@ public class Calculator {
     }
 
     public static double e(){
+        //calculates e to 15 decimal points
         int iterations = 1000;
         double total = 0;
 
@@ -174,6 +178,7 @@ public class Calculator {
     }
 
     public static void options(){
+        //prints out user's options
         System.out.println("Here are the functions we offer:\n" +
                 "1. Addition\n" +
                 "2. Subtraction\n" +
@@ -193,6 +198,7 @@ public class Calculator {
                 "16. Arctangent");
     }
     public static double getValue(String function, Scanner UI){
+        //returns a double with option of e or pi
         double num;
         System.out.println("Please enter a value for your " + function + " function");
         System.out.println("If you would like to use e or pi, please type 1 right now");
@@ -215,6 +221,8 @@ public class Calculator {
         UI.nextLine();
         return responseDouble;
     }
+
+    //helper function for returning two values at a time
     public static Pair twoValues(String function, Scanner UI){
         System.out.println("First value of " + function + " function");
         double num1 = getValue(function, UI);
@@ -303,6 +311,7 @@ public class Calculator {
                     break;
             }
 
+            //looping mechanism
             System.out.println("Would you like to continue? (yes/no)");
             while (true) {
                 String res = UI.nextLine();
