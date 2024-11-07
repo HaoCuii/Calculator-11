@@ -1,3 +1,15 @@
+import java.util.Scanner;
+
+class Pair {
+    double first;
+    double second;
+
+    Pair(double first, double second) {
+        this.first = first;
+        this.second = second;
+    }
+}
+
 public class Calculator {
     
     public static double power(double x, int exp){
@@ -145,7 +157,163 @@ public class Calculator {
         return guess;
     }
 
-    public static void main(String[] args) {
-        System.out.println(arctan(0.5));
+    public static double add(double a, double b){
+        return a + b;
+    }
+
+    public static double subtract(double a, double b){
+        return a - b;
+    }
+
+    public static double multiply(double a, double b){
+        return a * b;
+    }
+
+    public static double divide(double a, double b){
+        return a / b;
+    }
+
+    public static void options(){
+        System.out.println("Here are the functions we offer:\n" +
+                "1. Addition\n" +
+                "2. Subtraction\n" +
+                "3. Multiplication\n" +
+                "4. Division\n" +
+                "5. Power\n" +
+                "6. Squareroots\n" +
+                "7. Factorials (only whole numbers)\n" +
+                "8. Modulo\n" +
+                "9. Log\n" +
+                "10. Natural Log (ln)\n" +
+                "11. Sine\n" +
+                "12. Cosine\n" +
+                "13. Tangent\n" +
+                "14. Arcsine\n" +
+                "15. Arccosine\n" +
+                "16. Arctangent");
+    }
+    public static double getValue(String function, Scanner UI){
+        double num;
+        System.out.println("Please enter a value for your " + function + " function");
+        System.out.println("If you would like to use e or pi, please type 1 right now");
+        String piOrE = UI.nextLine();
+        if (piOrE.equals("1")){
+            System.out.println("PI for pi and E for e");
+            while (true) {
+                String res = UI.nextLine();
+                if (res.equals("PI")) {
+                    return pi();
+                } else if (res.equals("E")) {
+                    return e();
+                }
+                System.out.println("Please enter PI or E");
+            }
+        }
+
+        System.out.println("Please enter your number");
+        double responseDouble = UI.nextDouble();
+        UI.nextLine();
+        return responseDouble;
+    }
+    public static Pair twoValues(String function, Scanner UI){
+        System.out.println("First value of " + function + " function");
+        double num1 = getValue(function, UI);
+        System.out.println("Second value of " + function + " function");
+        double num2 = getValue(function, UI);
+
+        return new Pair(num1, num2);
+    }
+
+    public static void main(String[] args){
+        System.out.println("Welcome to Sean and Hao's calculator!");
+        Scanner UI = new Scanner(System.in);
+
+        while (true) {
+            options();
+            System.out.println("What would you like to choose?");
+            int response = UI.nextInt();
+            UI.nextLine();
+            Pair values;
+            double value;
+
+            switch (response) {
+                case 1:
+                    values = twoValues("Addition", UI);
+                    System.out.println(add(values.first, values.second));
+                    break;
+                case 2:
+                    values = twoValues("Subtraction", UI);
+                    System.out.println(subtract(values.first, values.second));
+                    break;
+                case 3:
+                    values = twoValues("Multiplication", UI);
+                    System.out.println(multiply(values.first, values.second));
+                    break;
+                case 4:
+                    values = twoValues("Division", UI);
+                    System.out.println(divide(values.first, values.second));
+                    break;
+                case 5:
+                    values = twoValues("Power", UI);
+                    System.out.println(power(values.first, (int) values.second));
+                    break;
+                case 6:
+                    value = getValue("Squareroot", UI);
+                    System.out.println(sqrtNewton(value));
+                    break;
+                case 7:
+                    int factorialValue = (int) getValue("Factorial", UI);
+                    System.out.println(factorial(factorialValue));
+                    break;
+                case 8:
+                    values = twoValues("Modulo", UI);
+                    System.out.println(mod(values.first, values.second));
+                    break;
+                case 9:
+                    values = twoValues("Log", UI);
+                    System.out.println(log(values.first, values.second));
+                    break;
+                case 10:
+                    value = getValue("Natural Log (ln)", UI);
+                    System.out.println(ln(value));
+                    break;
+                case 11:
+                    value = getValue("Sine", UI);
+                    System.out.println(sin(value));
+                    break;
+                case 12:
+                    value = getValue("Cosine", UI);
+                    System.out.println(cos(value));
+                    break;
+                case 13:
+                    value = getValue("Tangent", UI);
+                    System.out.println(tan(value));
+                    break;
+                case 14:
+                    value = getValue("Arcsine", UI);
+                    System.out.println(arcsin(value));
+                    break;
+                case 15:
+                    value = getValue("Arccosine", UI);
+                    System.out.println(arccos(value));
+                    break;
+                case 16:
+                    value = getValue("Arctangent", UI);
+                    System.out.println(arctan(value));
+                    break;
+            }
+
+            System.out.println("Would you like to continue? (yes/no)");
+            while (true) {
+                String res = UI.nextLine();
+                if (res.equals("no")) {
+                    System.out.println("bye");
+                    return;
+                } else if (res.equals("yes")){
+                    break;
+                }
+                System.out.println("Please enter just (yes/no)");
+            }
+        }
     }
 }
